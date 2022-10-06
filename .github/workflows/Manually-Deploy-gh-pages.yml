@@ -22,7 +22,7 @@ jobs:
           git config --global user.name "${{ github.actor }}" 
       - name: deploy
         run: |
-          mkdir -p ./dist/gh-pages
+          mkdir -p ./build
           git init -b gh-pages ./dist/gh-pages
           git add remote set-url origin \
           https://git:${{ github.token }}@github.com/${{ github.repository }}.git 
