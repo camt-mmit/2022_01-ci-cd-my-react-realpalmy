@@ -1,0 +1,37 @@
+name: deploy-manual-gh-pages-actions
+run-name: ${{ github.actor }} is deploying gh-pages manually
+on:
+  push: 
+    branchs: 
+      - main
+jobs: 
+  deploy-gh-pages:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ github.token }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16" 
+      - name: Install Packages
+        run: npm install
+      - name: setup git
+        run: |
+          git config --global user.email "${{ github.event.pusher.email }}"
+          git config --global user.name "${{ github.actor }}" 
+      - name: deploy
+        run: |
+          mkdir -p ./dist/gh-pages
+          git init -b gh-pages ./dist/gh-pages
+          git add remote set-url origin \
+          https://git:${{ github.token }}@github.com/${{ github.repository }}.git 
+          git pull origin gh-pages
+          rm -rf ./*
+          cp -rf ../build/* ./
+          git add .
+          git commit -m "Manually commit"
+          git push origin gh-pages
+          cd ..
+      
+      
