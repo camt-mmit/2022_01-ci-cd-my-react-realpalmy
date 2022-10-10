@@ -32,6 +32,7 @@ jobs:
           git pull origin gh-pages
           rm -rf ./*
           cp -rf ../build/* ./
+          # git fetch -u origin gh-pages:gh-pages || exit 0
           git add .
           git commit -m "Manually commit" || exit 0
           git push origin gh-pages
