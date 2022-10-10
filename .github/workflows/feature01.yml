@@ -24,3 +24,8 @@ jobs:
         run: npm ci
       - name: Test Project
         run: npm run test
+      - name: Merge to main
+        run: |
+          git fetch --unshallow
+          git checkout main
+          git merge main
