@@ -24,19 +24,17 @@ jobs:
         run: PUBLIC_URL=/${{ github.event.repository.name }} npm run build
       - name: deploy
         run: |
-          # mkdir ./gh-pages
-          cd ./build
+          mkdir ./gh-pages
           git init -b gh-pages ./gh-pages
-          # cd ./gh-pages
+          cd ./gh-pages
           git remote add -t gh-pages origin \
           https://git:${{ github.token }}@github.com/${{ github.repository }}.git 
-          git fetch -u origin gh-pages:gh-pages
-          # git pull origin gh-pages
-          # rm -rf ./*
-          # cp -rf ../build/* ./
+          git pull origin gh-pages
+          rm -rf ./*
+          cp -rf ../build/* ./
           git add .
-          git commit -m "Manually deploy"
-          git push origin gh-pages -f
+          git commit -m "Manually commit"
+          git push origin gh-pages
           cd ..
       
       
