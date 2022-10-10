@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React Test feature-01 Palmy
+          Learn React Test feature-01 palmy
         </a>
       </header>
     </div>
